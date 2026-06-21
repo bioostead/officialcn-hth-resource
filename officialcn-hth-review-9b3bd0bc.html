@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>华体会 · 再叙</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+            background: #f6fafc;
+            color: #1a2c2e;
+            line-height: 1.7;
+            padding: 24px 16px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-wrap {
+            max-width: 760px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            padding: 28px 20px 40px;
+            box-shadow: 0 8px 24px rgba(40, 120, 110, 0.06);
+        }
+
+        /* hero 开场短句 */
+        .hero-slim {
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid rgba(40, 140, 130, 0.15);
+        }
+
+        .hero-slim .small-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #3b8b83;
+            background: #e0f2ef;
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 40px;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .hero-slim h1 {
+            font-weight: 400;
+            font-size: 1.9rem;
+            line-height: 1.3;
+            color: #12433e;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-slim h1 strong {
+            font-weight: 500;
+            color: #1f796e;
+        }
+
+        .hero-slim .opening-line {
+            margin-top: 10px;
+            font-size: 1.05rem;
+            color: #2a5f58;
+            max-width: 80%;
+        }
+
+        /* 承接段落 */
+        .story-block {
+            background: #ffffffdd;
+            backdrop-filter: blur(2px);
+            border-radius: 24px;
+            padding: 24px 20px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 12px rgba(60, 130, 120, 0.04);
+        }
+
+        .story-block p {
+            margin-bottom: 1em;
+            font-size: 0.98rem;
+            color: #1f3835;
+        }
+
+        .story-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .story-block .quiet-link {
+            color: #1f796e;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dashed #7bbbb0;
+            transition: border 0.2s;
+        }
+
+        .story-block .quiet-link:hover {
+            border-bottom-style: solid;
+            color: #0b5b50;
+        }
+
+        /* 网格卡片 —— 特点列表 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin: 28px 0 24px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 20px 16px 18px;
+            box-shadow: 0 4px 12px rgba(40, 110, 100, 0.03);
+            border: 1px solid #e0eee9;
+            transition: box-shadow 0.2s, transform 0.1s;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 8px 20px rgba(40, 140, 125, 0.08);
+            transform: translateY(-2px);
+            border-color: #afd9cf;
+        }
+
+        .feature-card .icon-symbol {
+            font-size: 1.8rem;
+            line-height: 1;
+            display: inline-block;
+            margin-bottom: 10px;
+            color: #1f796e;
+        }
+
+        .feature-card h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: #12433e;
+            margin-bottom: 6px;
+        }
+
+        .feature-card p {
+            font-size: 0.88rem;
+            color: #3d625b;
+            line-height: 1.6;
+        }
+
+        /* 温和结尾 */
+        .gentle-closing {
+            background: linear-gradient(145deg, #e9f5f2, #f2faf8);
+            border-radius: 28px;
+            padding: 28px 22px 24px;
+            margin: 18px 0 28px;
+        }
+
+        .gentle-closing p {
+            font-size: 0.96rem;
+            color: #1b423d;
+            margin-bottom: 12px;
+        }
+
+        .gentle-closing .signature-line {
+            font-size: 0.85rem;
+            color: #517a72;
+            border-top: 1px solid #b9d7d0;
+            padding-top: 14px;
+            margin-top: 6px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .gentle-closing .signature-line span {
+            opacity: 0.7;
+        }
+
+        /* FAQ 摘要式片段（融入承接） */
+        .faq-mini {
+            background: #ffffffd9;
+            border-radius: 24px;
+            padding: 20px 18px;
+            margin: 20px 0 16px;
+            border-left: 4px solid #60aca0;
+        }
+
+        .faq-mini h4 {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #14554b;
+            margin-bottom: 6px;
+        }
+
+        .faq-mini p {
+            font-size: 0.9rem;
+            color: #2b5a52;
+        }
+
+        /* 纯链接声明（自然嵌入句） */
+        .embed-link-sentence {
+            margin: 24px 0 12px;
+            padding: 8px 0;
+            font-size: 0.95rem;
+            color: #23544c;
+            text-align: center;
+            border-top: 1px solid #cde3dd;
+            border-bottom: 1px solid #cde3dd;
+        }
+
+        .embed-link-sentence a {
+            color: #1a7366;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px dotted #5ea296;
+            padding: 0 2px;
+        }
+
+        .embed-link-sentence a:hover {
+            border-bottom-style: solid;
+            color: #0a5a4e;
+        }
+
+        /* 移动端细节 */
+        @media (max-width: 480px) {
+            .page-wrap {
+                padding: 20px 14px 32px;
+                border-radius: 24px;
+            }
+
+            .hero-slim h1 {
+                font-size: 1.6rem;
+            }
+
+            .hero-slim .opening-line {
+                max-width: 100%;
+                font-size: 0.96rem;
+            }
+
+            .story-block {
+                padding: 18px 16px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .feature-card {
+                padding: 16px 12px 14px;
+            }
+
+            .gentle-closing {
+                padding: 22px 16px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 极简 footer */
+        .page-footer {
+            margin-top: 10px;
+            font-size: 0.7rem;
+            color: #6e948d;
+            text-align: center;
+            letter-spacing: 0.03em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+    <!-- 开场短句 hero -->
+    <div class="hero-slim">
+        <span class="small-label">✦ 再次遇见</span>
+        <h1>一处安静的角落，<br>值得<strong>反复回来</strong>。</h1>
+        <div class="opening-line">—— 收藏它，就像收藏一个常读常新的地方。</div>
+    </div>
+
+    <!-- 承接段落：从再次访问 / 收藏 / 持续关注的角度 -->
+    <div class="story-block">
+        <p>
+            有些页面，打开一次便不再想起；而另一些地方，总会在某个时刻让你想再回去看看。
+            <a href="https://officialcn-hth.com.cn" class="quiet-link">华体会</a> 于我而言，像是书架上那本常翻的册子——内容并不喧哗，但每次回来，都能找到一点熟悉的踏实，或是一丝新的启发。
+        </p>
+        <p>
+            不需要刻意记住链接，也不必将它置顶在标签栏。只是偶尔，当你恰好想起，或者浏览器自动补全了那个地址，你会点进去，像走进一家知道你在等待的茶馆。灯光温和，布局没有大变，但角落里或许多了几页笔记，又或者那篇曾让你驻足的段落，还是原来的语气。
+        </p>
+    </div>
+
+    <!-- 特点列表（网格卡片） -->
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="icon-symbol">◈</div>
+            <h3>不打扰的节奏</h3>
+            <p>没有弹窗催促，没有浮夸标语。页面保留着朴素而克制的呼吸感，适合慢慢看。</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon-symbol">◈</div>
+            <h3>内容常新</h3>
+            <p>并非日更的喧嚣，而是适时补充的段落，像老友偶尔寄来的明信片。</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon-symbol">◈</div>
+            <h3>节制与余味</h3>
+            <p>不追求面面俱到，只把值得说的事情，用安静的方式讲清楚。</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon-symbol">◈</div>
+            <h3>收藏的理由</h3>
+            <p>因为不急于一次读完，所以适合放在书签里，等待下一次自然而然的打开。</p>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要式片段 (自然衔接到持续关注) -->
+    <div class="faq-mini">
+        <h4>“为什么值得持续关注？”</h4>
+        <p>因为它的内容不是流水线式的更新，而更像一个缓慢生长的笔记本。每次回来，你可能会发现一段新的随笔、一次视角的调整，或者只是页面配色随着季节悄悄变了一点。持续关注，不是盯着一块屏幕，而是知道有一个地方始终在那里，不催促，也不消失。</p>
+    </div>
+
+    <!-- 温和结尾 + 再次回访的温暖感 -->
+    <div class="gentle-closing">
+        <p>所以，如果你也曾收藏过它，或者只是无意中路过，不妨偶尔再回来看看。不需要理由，也不必有期待——就像翻开一本旧书，发现夹在某一页的树叶书签还在。</p>
+        <p>有些页面是用来阅读的，而有些页面，是用来<em>反复拜访</em>的。<a href="https://officialcn-hth.com.cn" style="color: #1a7366; text-decoration: underline dotted #6fbcae;">华体会</a>属于后者。</p>
+        <div class="signature-line">
+            <span>— 保持收藏，保持温和的注视 —</span>
+            <span style="opacity:0.5;">·</span>
+            <span>期待下一次打开</span>
+        </div>
+    </div>
+
+    <!-- 自然嵌入链接的句子（再次满足 a 标签指向 且 文字严格为「华体会」） -->
+    <div class="embed-link-sentence">
+        📎 如果你还没有收藏，或许可以试试把 <a href="https://officialcn-hth.com.cn">华体会</a> 放进浏览器的书签栏。无需标签，不必备注，它就在那里。
+    </div>
+
+    <div class="page-footer">
+        —— 页面随叙述而变化 · 蓝绿色点缀 · 网格卡片 ——
+    </div>
+
+</div>
+
+</body>
+</html>
