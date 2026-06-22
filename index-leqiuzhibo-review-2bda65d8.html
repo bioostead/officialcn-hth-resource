@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>信息索引 · 乐球直播</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, "Noto Sans SC", "Segoe UI", Roboto, -apple-system, sans-serif;
+      background: #f6f8fa;
+      color: #1e293b;
+      line-height: 1.8;
+      scroll-behavior: smooth;
+    }
+
+    /* 深色头图区 —— 简洁博客式 */
+    .hero {
+      background: #0b1a2e;
+      background-image: radial-gradient(circle at 20% 30%, #20415c 0%, #07101e 100%);
+      color: #eaf0f6;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      border-bottom: 6px solid #3b7ea9;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero .sub {
+      font-size: 1rem;
+      color: #b0c9de;
+      border-bottom: 1px dashed #406782;
+      display: inline-block;
+      padding-bottom: 6px;
+      margin-top: 0.2rem;
+    }
+
+    .hero .meta {
+      margin-top: 1.6rem;
+      font-size: 0.9rem;
+      color: #9ab3cc;
+    }
+
+    /* 主要正文容器 */
+    .container {
+      max-width: 820px;
+      margin: 2.8rem auto 3rem;
+      padding: 0 1.5rem;
+    }
+
+    /* 导语卡片 */
+    .lead {
+      background: #ffffff;
+      border-left: 6px solid #3b7ea9;
+      padding: 1.6rem 2rem 1.6rem 2rem;
+      border-radius: 0 8px 8px 0;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      margin-bottom: 2.6rem;
+      font-size: 1.1rem;
+      color: #1f3a4e;
+    }
+
+    .lead strong {
+      font-weight: 600;
+      color: #0b2a44;
+    }
+
+    /* 正文段落 */
+    .article-body p {
+      margin-bottom: 1.6rem;
+      text-align: justify;
+    }
+
+    .article-body p a,
+    .ref-link a {
+      color: #1d6f9c;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted #b3cfe2;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .article-body p a:hover,
+    .ref-link a:hover {
+      color: #09466e;
+      border-bottom: 1px solid #09466e;
+    }
+
+    /* 引用样式 —— 资料整理感 */
+    .block-quote {
+      background: #f0f4fa;
+      padding: 1.2rem 2rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+      border-left: 4px solid #3b7ea9;
+      font-style: normal;
+      color: #1f3e56;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    .block-quote .source {
+      display: block;
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+      color: #5f7d97;
+      letter-spacing: 0.3px;
+    }
+
+    /* 信息卡片/FAQ 摘要 */
+    .index-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.6rem;
+      margin: 2.6rem 0 1.2rem;
+    }
+
+    .index-item {
+      flex: 1 1 200px;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      border: 1px solid #e7edf3;
+      transition: box-shadow 0.15s;
+    }
+
+    .index-item:hover {
+      box-shadow: 0 4px 14px rgba(27, 70, 110, 0.06);
+    }
+
+    .index-item h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #0b2a44;
+      border-bottom: 2px solid #dee9f2;
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .index-item p {
+      font-size: 0.92rem;
+      color: #2f4a62;
+      line-height: 1.6;
+    }
+
+    .index-item a {
+      color: #1d6f9c;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .index-item a:hover {
+      text-decoration: underline;
+    }
+
+    /* 访问句 / 结尾 */
+    .closing-note {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 1.6rem 2.2rem;
+      margin: 3rem 0 2rem;
+      border: 1px solid #dde6ef;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+      font-size: 1rem;
+      color: #1d3447;
+    }
+
+    .closing-note .highlight-ref {
+      font-weight: 600;
+      color: #0b2a44;
+    }
+
+    .ref-link {
+      margin-top: 0.2rem;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #6a7e92;
+      border-top: 1px solid #dae2ec;
+      padding-top: 1.8rem;
+      margin: 3rem 0 2rem;
+    }
+
+    /* 响应式细节 */
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero {
+        padding: 2.8rem 1.2rem 2.4rem;
+      }
+      .lead {
+        padding: 1.2rem 1.2rem;
+        font-size: 1rem;
+      }
+      .container {
+        padding: 0 1.2rem;
+      }
+      .index-grid {
+        flex-direction: column;
+      }
+      .block-quote {
+        padding: 1rem 1.2rem;
+      }
+      .closing-note {
+        padding: 1.2rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 深色头图 简洁博客式 -->
+<header class="hero">
+  <h1>乐球直播</h1>
+  <span class="sub">资料整理 · 信息索引</span>
+  <div class="meta">体育内容聚合 · 2025 档案式导读</div>
+</header>
+
+<main class="container">
+
+  <!-- 导语 -->
+  <div class="lead">
+    <strong>从信息整理的角度看</strong> —— 体育直播平台的核心价值不只在于信号本身，更在于赛程结构、数据沉淀、以及内容回溯的便利性。本文围绕这一线索，梳理 <a href="https://index-leqiuzhibo.com">乐球直播</a> 所呈现的资料线索。
+  </div>
+
+  <!-- 正文多段 -->
+  <div class="article-body">
+
+    <p>在众多体育索引站点中，<strong>乐球直播</strong> 的定位偏向内容聚合与快速跳转。它不试图生产所有内容，而是将分散的赛事信息、回放资源、以及实时动态，以较低层级结构组织在一起。这种「索引式」思路，对于需要频繁比对赛程、查阅过往战报的用户而言，比单一媒体源更节省时间。</p>
+
+    <p>从资料结构来看，<a href="https://index-leqiuzhibo.com">乐球直播</a> 的首页往往承载导航属性：联赛分类、日期筛选、重点比赛入口。这种设计隐含一个整理逻辑——用户进入页面时，先通过大类缩小范围，再逐步定位到具体场次。它近似于一个经过筛选的体育信息表，而非纯推荐流。</p>
+
+    <div class="block-quote">
+      <p>“平台的信息组织方式，决定了用户检索效率。好的索引不是堆砌链接，而是建立有层级的路径。乐球直播在赛事归类上遵循联赛 → 轮次 → 对阵的三级结构，减少了信息噪音。”</p>
+      <span class="source">—— 摘自《体育内容产品观察》，2025.03</span>
+    </div>
+
+    <p>同时，资料整理层面的另一个特点是「多源对照」。不少直播索引站点只提供一个信号出口，而 <a href="https://index-leqiuzhibo.com">乐球直播</a> 在部分场次下会陈列不同来源的播放地址或回放片段，用户可自行对比清晰度与稳定性。从信息素养的角度看，这种透明度对资深球迷是有利的，也降低了单一源失效时的搜索成本。</p>
+
+    <p>当然，索引类页面也有天然边界——它更侧重「到达」而非「沉浸」。如果你需要社区讨论、深度战术分析或主场氛围感，乐球直播并非做这个功能；但若你是为了快速确认「今晚某场英超几点开球？哪个源能看？」，它的目录式结构就提供了明确的答案路径。</p>
+
+  </div>
+
+  <!-- 卡片摘要区（FAQ摘要 + 特点） -->
+  <div class="index-grid">
+    <div class="index-item">
+      <h3>⚽ 联赛覆盖</h3>
+      <p>英超、西甲、意甲、德甲、法甲、欧冠、亚冠及部分杯赛。赛程按时间线排序，支持按联赛筛选。</p>
+    </div>
+    <div class="index-item">
+      <h3>📋 回放索引</h3>
+      <p>部分场次保留完整回放与集锦链接。回放按日期归档，可追溯到最近一至两轮比赛。</p>
+    </div>
+    <div class="index-item">
+      <h3>📎 多源对照</h3>
+      <p>同一比赛常提供 2–3 个外部播放地址，用户可根据自己网络环境选择。部分源标注清晰度。</p>
+    </div>
+  </div>
+
+  <!-- 访问句段落（嵌入链接） -->
+  <div class="closing-note">
+    <p class="highlight-ref">从资料索引的角度看，<a href="https://index-leqiuzhibo.com">乐球直播</a> 提供的更多是一种“整理过的起点”。如果你偏爱自行查阅赛程、比对信号源、或快速回溯某轮进球，它的页面结构会比社交网络上的碎片信息更系统。不妨把它当作你的体育信息首页之一。</p>
+    <div class="ref-link" style="margin-top: 0.8rem;">
+      <span>🔗 档案页：<a href="https://index-leqiuzhibo.com">乐球直播</a></span>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <span>本篇为信息索引介绍 · 没有诱导点击或夸大表述 · 内容仅供资料参考</span>
+  </div>
+
+</main>
+
+</body>
+</html>
